@@ -1,8 +1,8 @@
 type Mutation {
 	# virgula é opcional
-	novoUsuario(nome: String, email: String, idade: Int): Usuario!
+	novoUsuario(dados: UsuarioInput!): Usuario!
 
-	excluirUsuario(id: Int!): Usuario
+	excluirUsuario(filtro: UsuarioFiltro!): Usuario
 
-	alterarUsuario(id: Int!, nome: String, email: String, idade: Int): Usuario
+	alterarUsuario(filtro: UsuarioFiltro!, dados: UsuarioInput!): Usuario
 }
