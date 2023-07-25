@@ -2,6 +2,8 @@ const db = require('../../config/db');
 
 module.exports = {
 	async novoPerfil(_, { dados }) {
+		const perfil = await db('perfis').where({ nome: filtro.nome }).first();
+		if (perfil) return new Error('perfil ja cadastrado');
 		const [id] = await db('perfis').insert({ ...dados });
 		return { ...dados, id };
 	},
@@ -12,7 +14,9 @@ module.exports = {
 		} else if (filtro.nome) {
 			perfil = await db('perfis').where({ nome: filtro.nome }).first();
 		}
-		await db('perfis').where({ id: filtro.id }).delete();
+		if (perfil) {
+			await db('perfis').where({ id: perfil.id }).delete();
+		}
 		return perfil;
 	},
 	async alterarPerfil(_, { filtro, dados }) {
