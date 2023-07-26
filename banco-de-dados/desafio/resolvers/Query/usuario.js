@@ -1,14 +1,14 @@
 const db = require('../../config/db');
 
 module.exports = {
-	async usuarios() {
-		return await db('usuarios');
+	usuarios() {
+		return db('usuarios');
 	},
-	async usuario(_, { filtro }) {
+	usuario(_, { filtro }) {
 		if (filtro.id) {
-			return await db('usuarios').where({ id: filtro.id }).first();
+			return db('usuarios').where({ id: filtro.id }).first();
 		} else if (filtro.email) {
-			return await db('usuarios').where({ email: filtro.email }).first();
+			return db('usuarios').where({ email: filtro.email }).first();
 		}
 		return null;
 	},
