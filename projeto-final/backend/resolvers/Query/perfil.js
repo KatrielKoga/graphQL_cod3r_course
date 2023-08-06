@@ -2,7 +2,7 @@ const db = require('../../config/db');
 
 module.exports = {
 	perfis(parent, args, ctx) {
-		ctx && ctx.validarAdmin();
+		// ctx && ctx.validarAdmin();
 		return db('perfis');
 	},
 	perfil(_, { filtro }, ctx) {

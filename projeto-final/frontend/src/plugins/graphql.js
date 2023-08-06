@@ -5,7 +5,7 @@ import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 Vue.use({
-	install(Vue) {
+	install(vue) {
 		const httpLink = createHttpLink({
 			uri: 'http://localhost:4000/',
 		});
@@ -19,8 +19,11 @@ Vue.use({
 				},
 			};
 		});
+		console.log(Vue);
 
-		Vue.prototype.$api = new ApolloClient({
+		vue.prototype.teste = 'teste';
+
+		vue.prototype.$api = new ApolloClient({
 			link: authLink.concat(httpLink),
 			cache: new InMemoryCache(),
 		});
