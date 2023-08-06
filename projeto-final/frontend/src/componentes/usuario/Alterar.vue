@@ -118,7 +118,7 @@ export default {
 						email: this.usuario.email,
 						senha: this.usuario.senha,
 						perfis: this.perfisSelecionados,
-						id: this.filtro.id,
+						id: +this.filtro.id,
 						emailFiltro: this.filtro.email,
 					},
 				})

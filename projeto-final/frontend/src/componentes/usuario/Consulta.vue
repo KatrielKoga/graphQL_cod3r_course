@@ -72,7 +72,7 @@ export default {
 						}
 					`,
 					variables: {
-						id: this.filtro.id,
+						id: +this.filtro.id,
 						email: this.filtro.email,
 					},
 					fetchPolicy: 'network-only',
