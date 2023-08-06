@@ -84,7 +84,53 @@ export default {
 	},
 	methods: {
 		alterarUsuario() {
-			// Implementar
+			this.$api
+				.mutate({
+					mutation: gql`
+						mutation(
+							$nome: String
+							$email: String
+							$senha: String
+							$perfis: [PerfilFiltro]
+							$id: Int
+							$emailFiltro: String
+						) {
+							alterarUsuario(
+								dados: {
+									nome: $nome
+									email: $email
+									senha: $senha
+									perfis: $perfis
+								}
+								filtro: { id: $id, email: $emailFiltro }
+							) {
+								id
+								nome
+								email
+								perfis {
+									rotulo
+								}
+							}
+						}
+					`,
+					variables: {
+						nome: this.usuario.nome,
+						email: this.usuario.email,
+						senha: this.usuario.senha,
+						perfis: this.perfisSelecionados,
+						id: this.filtro.id,
+						emailFiltro: this.filtro.email,
+					},
+				})
+				.then(res => {
+					this.dados = res.data.alterarUsuario;
+					this.erros = null;
+					this.filtro = {};
+					this.usuario = {};
+				})
+				.catch(e => {
+					this.erros = e;
+				});
 		},
 		obterPerfis() {
 			this.$api

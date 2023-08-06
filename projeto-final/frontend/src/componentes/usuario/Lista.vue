@@ -22,7 +22,7 @@
 						<td>{{ props.item.id }}</td>
 						<td>{{ props.item.nome }}</td>
 						<td>{{ props.item.email }}</td>
-						<td>{{ props.item.perfis.map(p => p.nome).join(', ') }}</td>
+						<td>{{ props.item.perfis.map(p => p.rotulo).join(', ') }}</td>
 					</template>
 				</v-data-table>
 			</v-flex>
